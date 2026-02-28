@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -351,20 +349,19 @@
             }
         }
 
-        /* ===== CAMPOS DE FORMULÁRIO ===== */
         .form-group {
             margin-bottom: 20px;
         }
 
         .form-row {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 16px;
         }
 
-        @media (min-width: 640px) {
+        @media (max-width: 640px) {
             .form-row {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
             }
         }
 
@@ -374,8 +371,6 @@
             font-weight: 600;
             color: var(--gray-700);
             margin-bottom: 8px;
-            text-transform: none;
-            letter-spacing: 0;
         }
 
         .form-label.required::after {
@@ -388,61 +383,59 @@
             padding: 12px 16px;
             border: 1px solid var(--gray-300);
             border-radius: var(--border-radius);
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            transition: var(--transition);
-            background: var(--white);
+            font-size: 15px;
             color: var(--gray-900);
+            transition: var(--transition-fast);
+            background: var(--white);
         }
 
         .form-input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px var(--primary-light);
-        }
-
-        .form-input:disabled {
-            background: var(--gray-100);
-            color: var(--gray-500);
-            cursor: not-allowed;
+            box-shadow: 0 0 0 4px var(--primary-light);
         }
 
         .form-input.error {
             border-color: var(--error-color);
-            background: var(--error-light);
+            background-color: #fffcfc;
         }
 
-        .form-input.success {
-            border-color: var(--success-color);
-            background: var(--success-light);
+        .form-input.error:focus {
+            box-shadow: 0 0 0 4px var(--error-light);
         }
 
         .form-select {
             appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23475569' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 12px center;
-            background-size: 20px;
+            background-size: 16px;
             padding-right: 40px;
-            cursor: pointer;
         }
 
         .error-message {
-            display: none;
-            font-size: 13px;
             color: var(--error-color);
-            margin-top: 6px;
+            font-size: 12px;
             font-weight: 500;
+            margin-top: 4px;
+            display: none;
         }
 
         .error-message.show {
             display: block;
+            animation: fadeIn 0.2s ease-out;
         }
 
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* ===== SEÇÕES DE INFORMAÇÃO ===== */
         .info-section {
             background: var(--gray-50);
             border: 1px solid var(--gray-200);
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--border-radius);
             padding: 20px;
             margin-bottom: 24px;
         }
@@ -450,33 +443,29 @@
         .info-section-header {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .info-section-icon {
-            font-size: 20px;
             color: var(--primary-color);
+            font-size: 18px;
         }
 
         .info-section-title {
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 700;
             color: var(--gray-900);
-            margin: 0;
         }
 
-        .info-section-content {
-            background: var(--white);
-            border-radius: var(--border-radius);
-            padding: 16px;
-        }
-
-        .fee-notice {
+        /* ===== SEÇÃO DE TAXA ===== */
+        .fee-notice-section {
             background: var(--primary-light);
             border: 1px solid var(--primary-color);
             border-radius: var(--border-radius-lg);
-            padding: 20px;
+            padding: 24px;
             margin-bottom: 24px;
         }
 
@@ -636,10 +625,6 @@
             background: var(--primary-hover);
             box-shadow: var(--shadow-md);
             transform: translateY(-1px);
-        }
-
-        .btn-primary:active {
-            transform: translateY(0);
         }
 
         .btn-secondary {
@@ -931,17 +916,13 @@
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-lg);
             z-index: 1001;
-            animation: slideInRight 0.3s ease-out;
             display: none;
-        }
-
-        .success-notification.show {
-            display: block;
+            animation: slideInRight 0.3s ease-out;
         }
 
         @keyframes slideInRight {
             from {
-                transform: translateX(400px);
+                transform: translateX(100%);
                 opacity: 0;
             }
             to {
@@ -950,23 +931,113 @@
             }
         }
 
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 640px) {
+            .header-content {
+                padding: 12px 16px;
+            }
+            
+            .logo-title {
+                font-size: 16px;
+            }
+            
+            .security-badge {
+                font-size: 11px;
+                padding: 4px 8px;
+            }
+            
+            .main-container {
+                padding: 16px;
+            }
+            
+            .form-content {
+                padding: 20px;
+            }
+            
+            .form-title {
+                font-size: 20px;
+            }
+
+            .gov-badge {
+                display: none;
+            }
+
+            .fee-notice-section {
+                padding: 20px;
+            }
+
+            .fee-amount {
+                font-size: 24px;
+            }
+        }
+
+        /* ===== ANIMAÇÕES SUTIS ===== */
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .slide-up {
+            animation: slideUp 0.4s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== ESTADOS DE LOADING ===== */
         .loading-overlay {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            display: none;
             align-items: center;
             justify-content: center;
+            z-index: 1000;
         }
 
-        .loading-overlay.show {
-            display: flex;
+        .loading-content {
+            background: var(--white);
+            padding: 32px;
+            border-radius: var(--border-radius-lg);
+            text-align: center;
+            box-shadow: var(--shadow-xl);
         }
 
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--gray-200);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        .loading-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        /* ===== MELHORIAS DE ACESSIBILIDADE ===== */
+        .form-input:focus-visible,
+        .btn:focus-visible,
+        .checkbox-input:focus-visible {
+            outline: 2px solid var(--primary-color);
+            outline-offset: 2px;
+        }
+
+        /* ===== INDICADORES DE VALIDAÇÃO ===== */
         .validation-icon {
             position: absolute;
             right: 12px;
@@ -1044,7 +1115,7 @@
                     </div>
                     <div class="step" data-step="2">
                         <div class="step-circle">2</div>
-                        <div class="step-label">Endereço</div>
+                        <div class="step-label">Endereço e Contato</div>
                     </div>
                     <div class="step" data-step="3">
                         <div class="step-circle">3</div>
@@ -1087,7 +1158,7 @@
                                     <div class="form-group">
                                         <label class="form-label required" for="cnhNumber">Número da CNH</label>
                                         <div class="form-input-wrapper">
-                                            <input type="text" id="cnhNumber" name="cnhNumber" class="form-input" maxlength="12" required placeholder="00000000000" inputmode="numeric">
+                                            <input type="text" id="cnhNumber" name="cnhNumber" class="form-input" maxlength="11" required placeholder="00000000000" inputmode="numeric">
                                             <i class="fas fa-check validation-icon"></i>
                                         </div>
                                         <div class="error-message" id="cnhNumberError">Digite um número de CNH válido</div>
@@ -1109,8 +1180,8 @@
                                     <div class="info-section-content">
                                         <div class="form-row">
                                             <div class="form-group">
-                                                <label class="form-label required" for="cnhCategory">Categoria</label>
-                                                <select id="cnhCategory" name="cnhCategory" class="form-input form-select" required>
+                                                <label class="form-label required" for="category">Categoria</label>
+                                                <select id="category" name="category" class="form-input form-select" required>
                                                     <option value="">Selecione a categoria</option>
                                                     <option value="A">A</option>
                                                     <option value="B">B</option>
@@ -1119,16 +1190,13 @@
                                                     <option value="D">D</option>
                                                     <option value="E">E</option>
                                                 </select>
-                                                <div class="error-message" id="cnhCategoryError">Selecione a categoria</div>
+                                                <div class="error-message" id="categoryError">Selecione a categoria</div>
                                             </div>
                                             
                                             <div class="form-group">
-                                                <label class="form-label required" for="cnhExpiryDate">Data de Vencimento da CNH</label>
-                                                <div class="form-input-wrapper">
-                                                    <input type="date" id="cnhExpiryDate" name="cnhExpiryDate" class="form-input" required>
-                                                    <i class="fas fa-check validation-icon"></i>
-                                                </div>
-                                                <div class="error-message" id="cnhExpiryDateError">Selecione a data de vencimento</div>
+                                                <label class="form-label required" for="expiryDate">Data de Vencimento da CNH</label>
+                                                <input type="date" id="expiryDate" name="expiryDate" class="form-input" required>
+                                                <div class="error-message" id="expiryDateError">Selecione a data de vencimento</div>
                                             </div>
                                         </div>
                                     </div>
@@ -1164,11 +1232,11 @@
                     </div>
                 </div>
 
-                <!-- Etapa 2: Endereço -->
+                <!-- Etapa 2: Endereço e Contato -->
                 <div class="step-content" id="step2">
                     <div class="form-header">
-                        <h1 class="form-title">Endereço</h1>
-                        <p class="form-subtitle">Informe seu endereço residencial para a renovação da CNH</p>
+                        <h1 class="form-title">Endereço e Contato</h1>
+                        <p class="form-subtitle">Informe seu endereço para entrega da nova CNH</p>
                     </div>
                     
                     <div class="form-content">
@@ -1282,69 +1350,115 @@
                 <!-- Etapa 3: Confirmação -->
                 <div class="step-content" id="step3">
                     <div class="form-header">
-                        <h1 class="form-title">Confirmação</h1>
-                        <p class="form-subtitle">Revise seus dados e confirme a renovação da CNH</p>
+                        <h1 class="form-title">Confirmação e Finalização</h1>
+                        <p class="form-subtitle">Revise seus dados e finalize o processo de renovação da CNH</p>
                     </div>
                     
                     <div class="form-content">
+                        <!-- Seção de Revisão de Dados -->
+                        <div class="review-section">
+                            <div class="review-header" onclick="toggleReviewSection()">
+                                <div class="review-header-left">
+                                    <i class="fas fa-clipboard-list review-header-icon"></i>
+                                    <span class="review-header-text">Revisar Dados Informados</span>
+                                </div>
+                                <i class="fas fa-chevron-down review-header-arrow"></i>
+                            </div>
+                            <div class="review-content" id="reviewContent">
+                                <div class="review-content-inner">
+                                    <div class="review-grid" id="reviewGrid">
+                                        <!-- Dados serão preenchidos dinamicamente -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- NOVA SEÇÃO: Comunicado sobre Taxa de Renovação -->
+                        <div class="fee-notice-section">
+                            <div class="fee-notice-header">
+                                <i class="fas fa-info-circle fee-notice-icon"></i>
+                                <h3 class="fee-notice-title">Informações sobre Taxa de Renovação</h3>
+                            </div>
+                            <div class="fee-notice-content">
+                                <p class="fee-notice-text">
+                                    Para finalizar o processo de renovação da sua CNH, é necessário o pagamento da taxa de processamento e emissão. 
+                                    Este valor cobre todos os custos administrativos e garante a emissão do documento oficial.
+                                </p>
+                                
+                                <div class="fee-highlight-box">
+                                    <div class="fee-amount">R$ 56,47</div>
+                                    <div class="fee-description">Taxa única de renovação e emissão</div>
+                                </div>
+
+                                <p class="fee-notice-text">
+                                    <strong>O que está incluído na taxa:</strong>
+                                </p>
+                                
+                                <ul class="fee-benefits-list">
+                                    <li>Processamento completo da documentação</li>
+                                    <li>Registro oficial nos sistemas de trânsito</li>
+                                    <li>Emissão da CNH Digital</li>
+                                    <li>Emissão da CNH Física (quando aplicável)</li>
+                                    <li>Suporte especializado durante todo o processo</li>
+                                    <li>Entrega do documento no endereço informado</li>
+                                </ul>
+
+                                <p class="fee-notice-text">
+                                    <strong>Importante:</strong> Esta é uma taxa única e não há custos adicionais. 
+                                    Após o pagamento, você receberá todas as instruções para a retirada ou recebimento da sua nova CNH.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="declaration-section">
+                            <h3 class="declaration-title">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Declaração e Termos
+                            </h3>
+                            <p class="declaration-text">
+                                Ao prosseguir, você declara que leu e aceita os Termos de Uso e a Política de Privacidade, 
+                                confirma que as informações fornecidas são verdadeiras e autoriza o processamento dos seus 
+                                dados conforme a Lei Geral de Proteção de Dados (LGPD).
+                            </p>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="termsAccept" name="termsAccept" class="checkbox-input" required>
+                                <label for="termsAccept" class="checkbox-label">
+                                    Declaro que li e aceito os <strong>Termos de Uso</strong> e a <strong>Política de Privacidade</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="dataAccuracy" name="dataAccuracy" class="checkbox-input" required>
+                                <label for="dataAccuracy" class="checkbox-label">
+                                    Confirmo que todas as informações fornecidas são <strong>verdadeiras e precisas</strong>
+                                </label>
+                            </div>
+                            
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="lgpdConsent" name="lgpdConsent" class="checkbox-input" required>
+                                <label for="lgpdConsent" class="checkbox-label">
+                                    Autorizo o processamento dos meus dados pessoais conforme a <strong>LGPD</strong>
+                                </label>
+                            </div>
+
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="feeAcknowledge" name="feeAcknowledge" class="checkbox-input" required>
+                                <label for="feeAcknowledge" class="checkbox-label">
+                                    Estou ciente da <strong>taxa de renovação de R$ 56,47</strong> e dos serviços incluídos
+                                </label>
+                            </div>
+                        </div>
+
                         <form id="confirmationForm">
-                            <!-- Seção de Revisão -->
-                            <div class="review-section">
-                                <div class="review-header" onclick="toggleReviewSection()">
-                                    <div class="review-header-left">
-                                        <i class="fas fa-check-circle review-header-icon"></i>
-                                        <span class="review-header-text">Revisar Dados</span>
-                                    </div>
-                                    <i class="fas fa-chevron-down review-header-arrow"></i>
-                                </div>
-                                <div class="review-content expanded" id="reviewContent">
-                                    <div class="review-content-inner">
-                                        <div class="review-grid" id="reviewGrid">
-                                            <!-- Preenchido dinamicamente -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Seção de Declarações -->
-                            <div class="declaration-section">
-                                <div class="declaration-title">
-                                    <i class="fas fa-exclamation-circle"></i>
-                                    Declarações Importantes
-                                </div>
-                                <div class="declaration-text">
-                                    Ao prosseguir com a renovação da CNH, você declara que todas as informações fornecidas são verdadeiras e completas.
-                                </div>
-
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="termsAccept" name="termsAccept" class="checkbox-input" required>
-                                    <label for="termsAccept" class="checkbox-label">Aceito os termos e condições da renovação de CNH</label>
-                                </div>
-
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="dataAccuracy" name="dataAccuracy" class="checkbox-input" required>
-                                    <label for="dataAccuracy" class="checkbox-label">Declaro que os dados informados são precisos e atualizados</label>
-                                </div>
-
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="lgpdConsent" name="lgpdConsent" class="checkbox-input" required>
-                                    <label for="lgpdConsent" class="checkbox-label">Consinto com o tratamento de meus dados conforme a LGPD</label>
-                                </div>
-
-                                <div class="checkbox-group">
-                                    <input type="checkbox" id="feeAcknowledge" name="feeAcknowledge" class="checkbox-input" required>
-                                    <label for="feeAcknowledge" class="checkbox-label">Reconheço que há uma taxa de renovação a ser paga</label>
-                                </div>
-                            </div>
-
                             <div class="button-group">
                                 <button type="button" class="btn btn-secondary" onclick="goToStep(2)">
                                     <i class="fas fa-arrow-left"></i>
                                     Voltar
                                 </button>
-                                <button type="submit" class="btn btn-primary btn-full">
-                                    <i class="fas fa-check"></i>
-                                    Confirmar Renovação
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-credit-card"></i>
+                                    Pagar e Finalizar (R$ 56,47)
                                 </button>
                             </div>
                         </form>
@@ -1357,125 +1471,166 @@
         <aside class="sidebar">
             <div class="summary-card">
                 <h3 class="summary-title">Resumo do Processo</h3>
+                
                 <div class="price-display">
-                    <div class="price-label">Taxa de Renovação</div>
-                    <div class="price-value">R$ 293,50</div>
+                    <div class="price-label">Taxa de Renovação CNH</div>
+                    <div class="price-value">R$ 56,47</div>
                 </div>
             </div>
 
             <div class="trust-section">
-                <h3 class="trust-title">Por que confiar?</h3>
+                <h3 class="trust-title">Garantias e Benefícios</h3>
+                
                 <div class="trust-item">
-                    <div class="trust-icon">✓</div>
-                    <div class="trust-text">Portal Oficial</div>
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Processo 100% seguro e certificado</div>
                 </div>
+                
                 <div class="trust-item">
-                    <div class="trust-icon">✓</div>
-                    <div class="trust-text">Segurança SSL</div>
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Renovação em até 48 horas úteis</div>
                 </div>
+                
                 <div class="trust-item">
-                    <div class="trust-icon">✓</div>
-                    <div class="trust-text">Dados Protegidos</div>
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Suporte especializado incluído</div>
                 </div>
+                
                 <div class="trust-item">
-                    <div class="trust-icon">✓</div>
-                    <div class="trust-text">Processo Rápido</div>
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Documentos digitais enviados por email</div>
+                </div>
+                
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Conformidade com legislação vigente</div>
+                </div>
+                
+                <div class="trust-item">
+                    <div class="trust-icon">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="trust-text">Garantia de satisfação</div>
                 </div>
             </div>
         </aside>
     </div>
 
-    <!-- Notificação de Sucesso -->
-    <div class="success-notification" id="successNotification"></div>
-
     <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay"></div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Processando solicitação...</div>
+        </div>
+    </div>
+
+    <!-- Notificação de Sucesso -->
+    <div class="success-notification" id="successNotification">
+        
+    </div>
 
     <script>
+        // ===== VARIÁVEIS GLOBAIS =====
         let currentStep = 1;
         let addressFilled = false;
         let isProcessing = false;
+        window.cnhData = {};
 
-        window.meiData = {};
+        // ===== CONFIGURAÇÕES =====
+        const DEBOUNCE_DELAY = 300;
+        const CEP_LOOKUP_DELAY = 500;
+
+        // ===== UTILITÁRIOS =====
+        function debounce(func, delay) {
+            let timeoutId;
+            return function (...args) {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        function showSuccessNotification(message) {
+            const notification = document.getElementById('successNotification');
+            if (notification) {
+                notification.textContent = message;
+                notification.style.display = 'block';
+                setTimeout(() => {
+                    notification.style.display = 'none';
+                }, 3000);
+            }
+        }
 
         // ===== INICIALIZAÇÃO =====
         document.addEventListener('DOMContentLoaded', function() {
             setupEventListeners();
-            applyMasks();
+            updateProgress();
+            setupMasks();
         });
 
+        // ===== EVENT LISTENERS =====
         function setupEventListeners() {
-            // Formulário de dados pessoais
-            const personalDataForm = document.getElementById('personalDataForm');
-            if (personalDataForm) {
-                personalDataForm.addEventListener('submit', handlePersonalDataSubmit);
-                
-                const cpfInput = document.getElementById('cpf');
-                const cnhInput = document.getElementById('cnhNumber');
-                
-                if (cpfInput) {
-                    cpfInput.addEventListener('input', function() {
-                        this.value = applyCPFMask(this.value);
-                        validateField(this);
-                    });
-                }
-                
-                if (cnhInput) {
-                    cnhInput.addEventListener('input', function() {
-                        validateField(this);
-                    });
-                    cnhInput.addEventListener('blur', handleCnhInput);
-                }
-            }
+            // Formulários
+            document.getElementById('personalDataForm')?.addEventListener('submit', handlePersonalDataSubmit);
+            document.getElementById('addressActivityForm')?.addEventListener('submit', handleAddressActivitySubmit);
+            document.getElementById('confirmationForm')?.addEventListener('submit', handleConfirmationSubmit);
 
-            // Formulário de endereço
-            const addressActivityForm = document.getElementById('addressActivityForm');
-            if (addressActivityForm) {
-                addressActivityForm.addEventListener('submit', handleAddressActivitySubmit);
-                
-                const zipCodeInput = document.getElementById('zipCode');
-                if (zipCodeInput) {
-                    zipCodeInput.addEventListener('input', function() {
-                        this.value = applyZipMask(this.value);
-                    });
-                    zipCodeInput.addEventListener('blur', handleCEPLookup);
-                }
-            }
-
-            // Formulário de confirmação
-            const confirmationForm = document.getElementById('confirmationForm');
-            if (confirmationForm) {
-                confirmationForm.addEventListener('submit', handleConfirmationSubmit);
-            }
-
-            // Campos de telefone
-            const phoneInput = document.getElementById('phone');
-            if (phoneInput) {
-                phoneInput.addEventListener('input', function() {
-                    this.value = applyPhoneMask(this.value);
-                    validateField(this);
+            // Validação de campos
+            document.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('blur', () => validateField(input));
+                input.addEventListener('input', () => {
+                    input.classList.remove('error');
+                    const errorEl = document.getElementById(input.name + 'Error');
+                    if (errorEl) errorEl.classList.remove('show');
                 });
+            });
+
+            // CEP lookup
+            const zipCodeInput = document.getElementById('zipCode');
+            if (zipCodeInput) {
+                zipCodeInput.addEventListener('input', debounce(handleCEPLookup, CEP_LOOKUP_DELAY));
+            }
+
+            // CNH input
+            const cnhInput = document.getElementById('cnhNumber');
+            if (cnhInput) {
+                cnhInput.addEventListener('input', debounce(handleCnhInput, DEBOUNCE_DELAY));
             }
         }
 
-        function applyMasks() {
-            const cpfInput = document.getElementById('cpf');
-            const cnhInput = document.getElementById('cnhNumber');
-            const phoneInput = document.getElementById('phone');
-            const zipCodeInput = document.getElementById('zipCode');
-
-            if (cpfInput) {
-                cpfInput.addEventListener('input', function(e) {
-                    const cursorPosition = e.target.selectionStart;
-                    const oldValue = e.target.value;
-                    const newValue = applyCPFMask(oldValue);
-                    if (newValue !== oldValue) {
-                        e.target.value = newValue;
-                        const newCursorPosition = cursorPosition + (newValue.length - oldValue.length);
-                        e.target.setSelectionRange(newCursorPosition, newCursorPosition);
-                    }
-                });
-            }
+        // ===== MÁSCARAS =====
+        function setupMasks() {
+            const maskConfigs = [
+                { id: 'cpf', mask: applyCPFMask },
+                { id: 'phone', mask: applyPhoneMask },
+                { id: 'zipCode', mask: applyZipMask }
+            ];
+            
+            maskConfigs.forEach(({ id, mask }) => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', function(e) {
+                        const cursorPosition = e.target.selectionStart;
+                        const oldValue = e.target.value;
+                        const newValue = mask(oldValue);
+                        
+                        if (newValue !== oldValue) {
+                            e.target.value = newValue;
+                            const newCursorPosition = cursorPosition + (newValue.length - oldValue.length);
+                            e.target.setSelectionRange(newCursorPosition, newCursorPosition);
+                        }
+                    });
+                }
+            });
         }
 
         function applyCPFMask(value) {
@@ -1508,7 +1663,7 @@
             const loadingIndicator = document.getElementById('cnhLoadingIndicator');
             const conditionalFields = document.getElementById('conditionalFields');
 
-            if (validateCNHFormat(cnhValue)) {
+            if (cnhValue.length === 11) {
                 cnhInput.blur();
                 
                 if (loadingIndicator) {
@@ -1525,7 +1680,7 @@
                     conditionalFields.classList.add('show');
                 }
 
-                showSuccessNotification('');
+                showSuccessNotification('Documento validado!');
             } else {
                 if (conditionalFields) {
                     conditionalFields.classList.remove('show');
@@ -1536,10 +1691,6 @@
             }
             
             validateField(cnhInput);
-        }
-
-        function validateCNHFormat(cnh) {
-            return /^\d{11}$/.test(cnh);
         }
 
         // ===== BUSCA DE CEP =====
@@ -1632,7 +1783,6 @@
             const zipCodeInput = document.getElementById('zipCode');
             const errorEl = document.getElementById('zipCodeError');
             const addressFields = document.getElementById('addressFields');
-            
             if (zipCodeInput) zipCodeInput.classList.add('error');
             if (errorEl) {
                 errorEl.textContent = 'CEP não encontrado. Verifique e tente novamente.';
@@ -1718,20 +1868,20 @@
             if (!reviewGrid) return;
 
             const reviewData = [
-                { label: 'Nome Completo', value: window.meiData.fullName },
-                { label: 'CPF', value: window.meiData.cpf },
-                { label: 'Número da CNH', value: window.meiData.cnhNumber },
-                { label: 'Categoria', value: window.meiData.cnhCategory },
-                { label: 'Data de Vencimento', value: window.meiData.cnhExpiryDate },
-                { label: 'E-mail', value: window.meiData.email },
-                { label: 'Telefone', value: window.meiData.phone },
-                { label: 'CEP', value: window.meiData.zipCode },
-                { label: 'Endereço', value: window.meiData.address },
-                { label: 'Número', value: window.meiData.number },
-                { label: 'Complemento', value: window.meiData.complement || 'Não informado' },
-                { label: 'Bairro', value: window.meiData.neighborhood },
-                { label: 'Cidade', value: window.meiData.city },
-                { label: 'Estado', value: window.meiData.state }
+                { label: 'Nome Completo', value: window.cnhData.fullName },
+                { label: 'CPF', value: window.cnhData.cpf },
+                { label: 'Número da CNH', value: window.cnhData.cnhNumber },
+                { label: 'Categoria', value: window.cnhData.category },
+                { label: 'Data de Vencimento', value: window.cnhData.expiryDate },
+                { label: 'E-mail', value: window.cnhData.email },
+                { label: 'Telefone', value: window.cnhData.phone },
+                { label: 'CEP', value: window.cnhData.zipCode },
+                { label: 'Endereço', value: window.cnhData.address },
+                { label: 'Número', value: window.cnhData.number },
+                { label: 'Complemento', value: window.cnhData.complement || 'Não informado' },
+                { label: 'Bairro', value: window.cnhData.neighborhood },
+                { label: 'Cidade', value: window.cnhData.city },
+                { label: 'Estado', value: window.cnhData.state }
             ];
 
             reviewGrid.innerHTML = reviewData.map(item => `
@@ -1803,11 +1953,10 @@
                 const validators = {
                     email: () => validateEmail(value) || "Digite um e-mail válido",
                     cpf: () => validateCPF(value) || "Digite um CPF válido",
-                    cnhNumber: () => validateCNH(value) || "Digite um número de CNH válido",
+                    cnhNumber: () => value.length === 11 || "Digite um número de CNH válido",
                     phone: () => validatePhone(value) || "Digite um telefone válido",
                     zipCode: () => validateZipCode(value) || "Digite um CEP válido",
-                    fullName: () => value.length >= 3 || "Digite um nome válido",
-                    cnhExpiryDate: () => validateDate(value) || "Selecione uma data válida"
+                    fullName: () => value.length >= 3 || "Digite um nome válido"
                 };
                 
                 const validator = validators[fieldName];
@@ -1860,20 +2009,12 @@
             return true;
         }
 
-        function validateCNH(cnh) {
-            return validateCNHFormat(cnh);
-        }
-
         function validatePhone(phone) {
             return /^\(\d{2}\) \d{5}-\d{4}$/.test(phone);
         }
 
         function validateZipCode(zipCode) {
             return /^\d{5}-\d{3}$/.test(zipCode);
-        }
-
-        function validateDate(date) {
-            return /^\d{4}-\d{2}-\d{2}$/.test(date);
         }
 
         // ===== HANDLERS DE FORMULÁRIO =====
@@ -1885,7 +2026,7 @@
             const formData = new FormData(e.target);
             const personalData = Object.fromEntries(formData.entries());
 
-            window.meiData = { ...window.meiData, ...personalData };
+            window.cnhData = { ...window.cnhData, ...personalData };
             goToStep(2);
         }
 
@@ -1897,7 +2038,7 @@
             const formData = new FormData(e.target);
             const addressActivityData = Object.fromEntries(formData.entries());
 
-            window.meiData = { ...window.meiData, ...addressActivityData };
+            window.cnhData = { ...window.cnhData, ...addressActivityData };
             goToStep(3);
         }
 
@@ -1927,7 +2068,7 @@
                     submissionDate: new Date().toISOString()
                 };
 
-                window.meiData = { ...window.meiData, ...declarationData };
+                window.cnhData = { ...window.cnhData, ...declarationData };
                 
                 // Redirecionamento imediato para o link específico
                 window.location.href = 'https://pay.pag-br.com/r/416j168GRnh652r6fbg9';
@@ -1938,17 +2079,6 @@
             } finally {
                 if (submitBtn) submitBtn.classList.remove('btn-loading');
                 if (loadingOverlay) loadingOverlay.style.display = 'none';
-            }
-        }
-
-        function showSuccessNotification(message) {
-            const notification = document.getElementById('successNotification');
-            if (notification) {
-                notification.textContent = message || 'Dados validados com sucesso!';
-                notification.classList.add('show');
-                setTimeout(() => {
-                    notification.classList.remove('show');
-                }, 3000);
             }
         }
     </script>
